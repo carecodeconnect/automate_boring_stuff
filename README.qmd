@@ -1,0 +1,133 @@
+---
+title: "Automate the Boring Stuff"
+format: gfm
+---
+
+# Overview
+
+This repository ("repo") featues a several mini Python projects for beginners from the excellent book ["Automate the Boring Stuff"](https://nostarch.com/automate-boring-stuff-python-3rd-edition) by Al Sweigart.
+
+The repo is designed to teach basic Python and software engineering skills to beginner data scientists.
+
+We'll learn to use the following tools:
+
+- Basic Python commands and modules
+- Bash Command Line Interface (CLI) tools (e.g. `ls`, `pwd`, `cd`, `mkdir`, `touch`)
+- `git` and `gh` for version control
+- `uv` for Python, environment, package management
+- `quarto` for scientific publishing
+
+# Requirements
+
+Each project:
+
+- Has its own subfolder in the repo
+
+- Uses `uv` for Python, environment and package management
+
+- Is a `git` submodule
+
+# Getting Started
+
+To run the projects and view the code locally:
+
+## Clone the Repository
+
+Open a terminal, navigate to your `projects` folder, and execute:
+
+```{bash}
+cd ~/projects
+git clone https://github.com/carecodeconnect/automate_boring_stuff.git
+```
+
+## Install UV
+
+Follow insallation instructions at the [UV](https://docs.astral.sh/uv/) homepage.
+
+## Run projects
+
+```{bash}
+cd automate_boring_stuff
+cd guess
+uv run main.py
+```
+
+# Developing
+
+If you want to develop your own repository using this project structure, follow these instructions.
+
+*Note*: These instructions assume you have already setup `git` on your local machine using SSH authentication, and that your local branch is called `main` (not `master`).
+
+We will use the Quarto scientific publishing system. This allows you to publish a GitHub Flavoured Markdown (GFM) README file.
+
+Follow these instructions to reproduce the development environment:
+
+- Install Quarto from the [Quarto](https://quarto.org) homepage.
+
+- Create a directory for your project and change to this directory
+
+```{bash}
+mkdir my_project
+cd my_project
+```
+- Create a Quarto file:
+
+```{bash}
+touch README.qmd
+```
+
+- If you want to try the Positron code editor (IDE or Interactive Development Environment), follow the download instructions on the [homepage](https://positron.posit.co/)
+
+- In your code editor, create a minimal YAML-formatted code chunk:
+
+```
+---
+title: "My project"
+format: gfm
+---
+Welcome to my project!
+```
+
+- Initialise a `uv` virtual environment and add `jupyter` to the environment
+
+```{bash}
+uv init
+uv venv
+uv add jupyter
+```
+
+- Render the file as a GFM with Quarto in your `uv` environment:
+
+```{bash}
+uv run quarto render README.qmd
+```
+
+This should produce a `README.md` file in the same directory.
+
+- Install GitHub command line interface by following the installation instructions on the [homepage](https://cli.github.com/)
+
+- Create a GitHub repository using `gh`:
+
+```{bash}
+gh repo create https://github.com/your_username/my_project --public # --private to make the repository private
+```
+
+- Connect local repository with remote repository using SSH authentication
+
+```{bash}
+git remote add origin git@github.com:your_username/my_project.git
+```
+
+- Add and commit changes to repo
+
+```{bash}
+git add README.md README.qmd
+git commit -m "Initial commit for repo"
+```
+
+- Push local changes to remote repository
+
+```{bash}
+git push --set-upstream origin main # for first push
+git push # for later pushes
+```
